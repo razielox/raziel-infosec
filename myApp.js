@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet')
 
-app.use(helmet.hidePoweredBy())
-app.use(helmet.frameguard({action:'deny'}))
-app.use(helmet.xssFilter())
-app.use(helmet.noSniff())
+app.use(helmet.hidePoweredBy()) //hide the page from see what technology is used on the server
+app.use(helmet.frameguard({action:'deny'})) // deny all the frame and iframe to this server
+app.use(helmet.xssFilter()) // deny the croos-site scripting
+app.use(helmet.noSniff()) // deny the changes in transit of the content-type header
+app.use(helmet.ieNoOpen()) // prevent from internet explorer to open html content of the webpage
 
 
 
