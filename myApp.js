@@ -2,13 +2,28 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet')
 const days90 = 90*24*60*60
-app.use(helmet.hidePoweredBy()) //hide the page from see what technology is used on the server
+/* app.use(helmet.hidePoweredBy()) //hide the page from see what technology is used on the server
 app.use(helmet.frameguard({action:'deny'})) // deny all the frame and iframe to this server
 app.use(helmet.xssFilter()) // deny the croos-site scripting
 app.use(helmet.noSniff()) // deny the changes in transit of the content-type header
 app.use(helmet.ieNoOpen()) // prevent from internet explorer to open html content of the webpage
 app.use(helmet.hsts({maxAge: days90, force: true})) // force the client to access from https
-app.use(helmet.dnsPrefetchControl()) //disable the dns prefetching
+app.use(helmet.dnsPrefetchControl()) //disable the dns prefetching */
+
+app.use(helmet({
+  frameguard:{
+    action:'deny'
+  },
+  hidePoweredBy: false,
+  xssFilter: false,
+  noSniff: false,
+  ieNoOpen: false,
+  hsts: {
+    maxAge: days90,
+    force: true
+  },
+  dnsPrefetchControl: false
+}))
 app.use(helmet.noCache()) // disable the client caching 
 //allow the creation of security trusted sources but only works on new browsers
 app.use(helmet.contentSecurityPolicy({directives:{defaultSrc:["'self'"], scriptSrc:["'self'",'trusted-cdn.com']}})) 
