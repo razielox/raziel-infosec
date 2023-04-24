@@ -10,7 +10,8 @@ app.use(helmet.ieNoOpen()) // prevent from internet explorer to open html conten
 app.use(helmet.hsts({maxAge: days90, force: true})) // force the client to access from https
 app.use(helmet.dnsPrefetchControl()) //disable the dns prefetching
 app.use(helmet.noCache()) // disable the client caching 
-
+//allow the creation of security trusted sources but only works on new browsers
+app.use(helmet.contentSecurityPolicy({defaultSrc:["'self'"], scriptSrc:['"self"','trusted-cdn.com']})) 
 
 
 
