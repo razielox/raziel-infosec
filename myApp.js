@@ -7,7 +7,8 @@ app.use(helmet.frameguard({action:'deny'})) // deny all the frame and iframe to 
 app.use(helmet.xssFilter()) // deny the croos-site scripting
 app.use(helmet.noSniff()) // deny the changes in transit of the content-type header
 app.use(helmet.ieNoOpen()) // prevent from internet explorer to open html content of the webpage
-app.use(helmet.hsts({maxAge: days90, force: true}))
+app.use(helmet.hsts({maxAge: days90, force: true})) // force the client to access from https
+app.use(helmet.dnsPrefetchControl()) //disable the dns prefetching
 
 
 
