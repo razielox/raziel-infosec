@@ -11,7 +11,7 @@ app.use(helmet.hsts({maxAge: days90, force: true})) // force the client to acces
 app.use(helmet.dnsPrefetchControl()) //disable the dns prefetching
 app.use(helmet.noCache()) // disable the client caching 
 //allow the creation of security trusted sources but only works on new browsers
-app.use(helmet.contentSecurityPolicy({defaultSrc:["'self'"], scriptSrc:["'self'",'trusted-cdn.com']})) 
+app.use(helmet.contentSecurityPolicy({directives:{defaultSrc:["'self'"], scriptSrc:["'self'",'trusted-cdn.com']}})) 
 
 
 
